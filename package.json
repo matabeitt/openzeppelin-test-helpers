@@ -48,9 +48,14 @@
     "web3-utils": "^1.2.5"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.1",
     "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.182",
     "@types/mocha": "^8.0.4",
     "@types/node": "^14.14.7",
+    "@types/semver": "^7.3.9",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
     "eslint": "^5.9.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
@@ -61,6 +66,6 @@
     "ganache-cli": "^6.5.0",
     "openzeppelin-docs-utils": "github:OpenZeppelin/docs-utils",
     "truffle": "^5.1.46",
-    "typescript": "^4.0.5"
+    "typescript": "^4.6.3"
   }
 }
