@@ -1,15 +1,14 @@
-const { web3 } = require('./setup');
-const { expect } = require('chai');
-
-const colors = require('ansi-colors');
-const semver = require('semver');
+import { web3 } from './setup';
+import { expect } from 'chai';
+import * as colors from 'ansi-colors';
+import semver from 'semver';
 
 const checkedProviders = new WeakSet();
 
-async function expectException (promise, expectedError) {
+async function expectException (promise: Promise<any>, expectedError: any) : Promise<any> {
   try {
     await promise;
-  } catch (error) {
+  } catch (error: any) {
     if (error.message.indexOf(expectedError) === -1) {
       // When the exception was a revert, the resulting string will include only
       // the revert reason, otherwise it will be the type of exception (e.g. 'invalid opcode')
@@ -25,7 +24,7 @@ async function expectException (promise, expectedError) {
   expect.fail('Expected an exception but none was received');
 }
 
-async function checkRevertReasonSupport (provider) {
+async function checkRevertReasonSupport (provider: any) {
   if (!checkedProviders.has(provider)) {
     // Find out if the provider supports revert reasons.
     // Implementations with known support:
@@ -35,7 +34,7 @@ async function checkRevertReasonSupport (provider) {
     const ganacheVersion = /TestRPC\/v([\w.-]+)\/ethereum-js/.exec(nodeInfo);
     const hardhatVersion = /HardhatNetwork\/([\w.-]+)\/ethereumjs-vm/.exec(nodeInfo);
 
-    const warn = function (msg) {
+    const warn = function (msg: any) {
       console.log(`\
 ${colors.white.bgBlack('@openzeppelin/test-helpers')} ${colors.black.bgYellow('WARN')} expectRevert: ${msg}`
       );
@@ -62,7 +61,7 @@ Upgrade to v2.2.0 or newer, or use expectRevert.unspecified to skip the revert r
   }
 }
 
-const expectRevert = async function (promise, expectedError) {
+const expectRevert = async function (promise: Promise<any>, expectedError: any) {
   promise.catch(() => { }); // Avoids uncaught promise rejections in case an input validation causes us to return early
 
   if (!expectedError) {
@@ -75,8 +74,8 @@ if your \'require\' statement doesn\'t have one.');
   await expectException(promise, expectedError);
 };
 
-expectRevert.assertion = (promise) => expectException(promise, 'invalid opcode');
-expectRevert.outOfGas = (promise) => expectException(promise, 'out of gas');
-expectRevert.unspecified = (promise) => expectException(promise, 'revert');
+expectRevert.assertion = (promise: Promise<any>) => expectException(promise, 'invalid opcode');
+expectRevert.outOfGas = (promise: Promise<any>) => expectException(promise, 'out of gas');
+expectRevert.unspecified = (promise: Promise<any>) => expectException(promise, 'revert');
 
 module.exports = expectRevert;

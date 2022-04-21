@@ -1,18 +1,15 @@
-const { web3 } = require('./setup');
-const ether = require('./ether');
-const send = require('./send');
-
-const { getSingletonsConfig } = require('./config/singletons');
-
-const { setupLoader } = require('@openzeppelin/contract-loader');
-
-const {
+import {
   ERC1820_REGISTRY_ABI,
   ERC1820_REGISTRY_ADDRESS,
   ERC1820_REGISTRY_DEPLOY_TX,
-} = require('./data');
+} from './data';
+import { web3 } from './setup';
+import { ether } from './ether';
+import { send } from './send';
+import { getSingletonsConfig } from './config/singletons';
+import { setupLoader } from '@openzeppelin/contract-loader';
 
-async function ERC1820Registry (funder) {
+async function ERC1820Registry (funder: any) {
   // Read https://eips.ethereum.org/EIPS/eip-1820 for more information as to how the ERC1820 registry is deployed to
   // ensure its address is the same on all chains.
 

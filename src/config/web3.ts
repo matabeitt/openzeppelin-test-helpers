@@ -6,7 +6,7 @@ const DEFAULT_PROVIDER_URL = 'http://localhost:8545';
 
 const localWeb3 = new Web3();
 
-function setWeb3Provider (provider) {
+function setWeb3Provider (provider: any) {
   localWeb3.setProvider(provider);
 }
 

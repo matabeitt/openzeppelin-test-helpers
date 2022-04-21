@@ -1,8 +1,6 @@
-const { toWei } = require('web3-utils');
-const { BN } = require('./setup');
+import { toWei } from 'web3-utils';
+import { BN } from './setup';
 
-function ether (n) {
+export function ether (n: any) {
   return new BN(toWei(n, 'ether'));
-}
-
-module.exports = ether;
+};

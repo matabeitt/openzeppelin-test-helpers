@@ -1,8 +1,9 @@
 /* global web3 */
 
-let singletonsConfig;
+let artifacts: any; // silence ts on line 24
+let singletonsConfig: any;
 
-function setSingletonsConfig (config) {
+function setSingletonsConfig (config: any) {
   singletonsConfig = config;
 }
 
@@ -25,7 +26,4 @@ function isTruffleEnvironment () {
 
 setSingletonsConfig.default = setDefaultSingletonsConfig;
 
-module.exports = {
-  setSingletonsConfig,
-  getSingletonsConfig,
-};
+export { setSingletonsConfig, getSingletonsConfig };

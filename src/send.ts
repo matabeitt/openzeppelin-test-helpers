@@ -1,10 +1,10 @@
-const { web3 } = require('./setup');
+import { web3 } from './setup';
 const ethjsABI = require('ethjs-abi');
 
-function findMethod (abi, name, args) {
+function findMethod (abi: any, name: any, args: any) {
   for (let i = 0; i < abi.length; i++) {
     if (abi[i].type === 'function') {
-      const methodArgs = abi[i].inputs.map(input => input.type).join(',');
+      const methodArgs = abi[i].inputs.map((input: any) => input.type).join(',');
       if ((abi[i].name === name) && (methodArgs === args)) {
         return abi[i];
       }
@@ -12,7 +12,7 @@ function findMethod (abi, name, args) {
   }
 }
 
-async function transaction (target, name, argsTypes, argsValues, opts = {}) {
+async function transaction (target: any, name: any, argsTypes: any, argsValues: any, opts: any = {}) {
   const abiMethod = findMethod(target.abi, name, argsTypes);
   const encodedData = ethjsABI.encodeMethod(abiMethod, argsValues);
 
@@ -21,11 +21,11 @@ async function transaction (target, name, argsTypes, argsValues, opts = {}) {
   return web3.eth.sendTransaction({ data: encodedData, to: target.address, ...opts });
 }
 
-function ether (from, to, value) {
+function ether (from: any, to: any, value: any) {
   return web3.eth.sendTransaction({ from, to, value, gasPrice: 0 });
 }
 
-module.exports = {
-  ether,
+export const send = {
   transaction,
+  ether,
 };

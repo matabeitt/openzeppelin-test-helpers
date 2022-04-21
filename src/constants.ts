@@ -1,9 +1,6 @@
-const { BN } = require('./setup');
+import { BN } from './setup';
 
-module.exports = {
-  ZERO_ADDRESS: '0x0000000000000000000000000000000000000000',
-  ZERO_BYTES32: '0x0000000000000000000000000000000000000000000000000000000000000000',
-  MAX_UINT256: new BN('2').pow(new BN('256')).sub(new BN('1')),
-  MAX_INT256: new BN('2').pow(new BN('255')).sub(new BN('1')),
-  MIN_INT256: new BN('2').pow(new BN('255')).mul(new BN('-1')),
-};
+export const ZERO_ADDRESS: string = '0x0000000000000000000000000000000000000000';
+export const ZERO_BYTES32: string = '0x0000000000000000000000000000000000000000000000000000000000000000';
+export const MAX_UINT256: any = new BN('2').pow(new BN('256')).sub(new BN('1'));
+export const MIN_UINT256: any = new BN('2').pow(new BN('256')).mul(new BN('-1'));

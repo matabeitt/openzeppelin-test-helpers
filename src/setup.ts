@@ -15,13 +15,12 @@ require('chai').use(chaiBN);
 // other reason. We do our best to install chai-bn for the user.
 for (const mod of [require.main, module.parent]) {
   try {
-    mod.require('chai').use(chaiBN);
+    if (mod) {
+      mod.require('chai').use(chaiBN);
+    }
   } catch (e) {
     // Ignore errors
   }
 }
 
-module.exports = {
-  web3,
-  BN,
-};
+export { web3, BN };
